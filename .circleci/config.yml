@@ -8,7 +8,7 @@ jobs:
     steps:
       - add_ssh_keys:
           fingerprints:
-            - "SHA256:p9wwvHNF/oqpSrJRYg0Yh4vuP3/iGo1aXmxaNmvbCrA vzvu3k6k@gmail.com"
+            - "57:a1:d3:c6:ac:4f:85:5d:cb:93:54:26:14:14:50:9c"
       - checkout
       - run:
           name: Install third-party dependencies
@@ -29,7 +29,7 @@ jobs:
           at: .
       - add_ssh_keys:
           fingerprints:
-            - "SHA256:p9wwvHNF/oqpSrJRYg0Yh4vuP3/iGo1aXmxaNmvbCrA vzvu3k6k@gmail.com"
+            - "57:a1:d3:c6:ac:4f:85:5d:cb:93:54:26:14:14:50:9c"
       - run:
           name: Deploy to GitHub Pages
           command: |
