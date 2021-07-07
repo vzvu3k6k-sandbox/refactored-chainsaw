@@ -13,6 +13,27 @@ jobs:
       - run:
           name: Build Hugo Website
           command: hugo -v
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+
+  deploy:
+    docker:
+      - image: cimg/node:lts
+    steps:
+      - attach_workspace:
+          at: .
+      - add_ssh_keys:
+          fingerprints:
+            - "SHA256:p9wwvHNF/oqpSrJRYg0Yh4vuP3/iGo1aXmxaNmvbCrA vzvu3k6k@gmail.com"
+      - run:
+          name: Install gh-pages
+          command: npm install -g --silent gh-pages@3.2.3
+      - run:
+          name: Deploy to GitHub Pages
+          command: |
+            gh-pages -d public
 
 workflows:
   version: 2
@@ -20,3 +41,9 @@ workflows:
   build-deploy:
     jobs:
       - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: main
