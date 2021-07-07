@@ -6,6 +6,9 @@ jobs:
       - image: klakegg/hugo:ext-alpine
     working_directory: ~/my-app
     steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "SHA256:p9wwvHNF/oqpSrJRYg0Yh4vuP3/iGo1aXmxaNmvbCrA vzvu3k6k@gmail.com"
       - checkout
       - run:
           name: Install third-party dependencies
