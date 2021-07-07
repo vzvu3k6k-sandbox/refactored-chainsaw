@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: tenntenn/docker-hugo-firebase:latest
+      - image: klakegg/hugo:latest
     working_directory: ~/my-app
     steps:
       - checkout
