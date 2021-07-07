@@ -1,0 +1,22 @@
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      - image: tenntenn/docker-hugo-firebase:latest
+    working_directory: ~/my-app
+    steps:
+      - checkout
+      - run:
+          name: Install third-party dependencies
+          command: git submodule sync && git submodule update --init
+      - run:
+          name: Build Hugo Website
+          command: hugo -v
+
+workflows:
+  version: 2
+
+  build-deploy:
+    jobs:
+      - build
