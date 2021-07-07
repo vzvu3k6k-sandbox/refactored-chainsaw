@@ -28,12 +28,15 @@ jobs:
           fingerprints:
             - "SHA256:p9wwvHNF/oqpSrJRYg0Yh4vuP3/iGo1aXmxaNmvbCrA vzvu3k6k@gmail.com"
       - run:
-          name: Install gh-pages
-          command: npm install -g --silent gh-pages@3.2.3
-      - run:
           name: Deploy to GitHub Pages
           command: |
-            gh-pages -d public
+            # Fix for https://github.com/tschaub/gh-pages/issues/354#issuecomment-674552919
+            touch package.json
+
+            npx gh-pages@3.2.3 \
+              --dist public \
+              --user "gocon-bot <gocon-bot@users.noreply.github.com>"
+          working_directory: project
 
 workflows:
   version: 2
